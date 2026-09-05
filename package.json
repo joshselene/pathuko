@@ -1,0 +1,38 @@
+{
+  "name": "ai-change-story",
+  "displayName": "AI Change Story",
+  "description": "Turn large AI-generated code changes into an interactive visual story so developers can understand what changed, why it matters, and what deserves attention.",
+  "version": "0.1.0",
+  "publisher": "chernyx-ai-labs",
+  "license": "MIT",
+  "engines": { "vscode": "^1.85.0" },
+  "categories": ["Other", "Visualization"],
+  "keywords": ["ai", "git", "code review", "changes", "risk", "story"],
+  "repository": { "type": "git", "url": "https://github.com/Chernyx-AI-Labs/ai-change-story" },
+  "main": "./out/extension.js",
+  "activationEvents": ["onCommand:aiChangeStory.analyze", "onView:aiChangeStory.sidebar"],
+  "contributes": {
+    "commands": [
+      { "command": "aiChangeStory.analyze", "title": "AI Change Story: Analyze Changes" },
+      { "command": "aiChangeStory.openStory", "title": "AI Change Story: Open Story" },
+      { "command": "aiChangeStory.refresh", "title": "AI Change Story: Refresh Analysis" },
+      { "command": "aiChangeStory.showMap", "title": "AI Change Story: Show Change Map" },
+      { "command": "aiChangeStory.showRisk", "title": "AI Change Story: Show Risk Report" },
+      { "command": "aiChangeStory.reset", "title": "AI Change Story: Reset" }
+    ],
+    "viewsContainers": { "activitybar": [{ "id": "aiChangeStory", "title": "AI Change Story", "icon": "media/icon.svg" }] },
+    "views": { "aiChangeStory": [{ "id": "aiChangeStory.sidebar", "name": "Change Story" }] },
+    "configuration": { "title": "AI Change Story", "properties": {
+      "aiChangeStory.autoDetect": { "type": "boolean", "default": true, "description": "Detect large workspace changes without analyzing automatically." },
+      "aiChangeStory.autoAnalyzeThreshold": { "type": "number", "default": 250, "minimum": 1, "description": "Changed-line threshold for a notification." },
+      "aiChangeStory.showNotifications": { "type": "boolean", "default": true, "description": "Show large-change notifications." },
+      "aiChangeStory.defaultDetailLevel": { "type": "string", "enum": ["simple", "medium", "deep"], "default": "medium" },
+      "aiChangeStory.enableRiskAnalysis": { "type": "boolean", "default": true },
+      "aiChangeStory.enableLLM": { "type": "boolean", "default": false, "description": "Reserved for an explicitly configured external provider." },
+      "aiChangeStory.llmProvider": { "type": "string", "default": "none" },
+      "aiChangeStory.excludePatterns": { "type": "array", "items": { "type": "string" }, "default": ["node_modules/**", "dist/**", "build/**", "*.lock"] }
+    } }
+  },
+  "scripts": { "compile": "tsc -p ./", "watch": "tsc -watch -p ./", "vscode:prepublish": "npm run compile", "test": "npm run compile && node --test out/test/**/*.test.js", "package": "npm run compile && vsce package" },
+  "devDependencies": { "@types/node": "^20.10.0", "@types/vscode": "^1.85.0", "@vscode/vsce": "^3.2.1", "typescript": "^5.3.0" }
+}
