@@ -1,6 +1,13 @@
 import { FileChange, ImportanceLevel } from '../models/change';
 export interface ImportanceResult { score: number; level: ImportanceLevel; }
-export function scoreChanges(files: FileChange[]): ImportanceResult {
+type ScorableChange = Pick<FileChange, 'additions' | 'deletions' | 'category' | 'flags'>;
+export function categoryScore(files: ScorableChange[], category: string): number {
+  const relevant = files.filter(file => file.category === category);
+  if (!relevant.length) return 0;
+  const result = scoreChanges(relevant);
+  return Math.max(1, Math.min(100, result.score));
+}
+export function scoreChanges(files: ScorableChange[]): ImportanceResult {
   let score = Math.min(25, files.reduce((sum, file) => sum + file.additions + file.deletions, 0) / 40);
   const categories = new Set(files.map(file => file.category));
   const weights: Array<[string, number]> = [['Authentication', 35], ['Security', 35], ['Database', 28], ['API', 22], ['Architecture', 22], ['Configuration', 18], ['Dependencies', 14], ['Backend', 12], ['Tests', 4], ['UI', 3]];

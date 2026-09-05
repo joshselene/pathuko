@@ -1,6 +1,6 @@
 {
   "name": "ai-change-story",
-  "displayName": "AI Change Story",
+  "displayName": "Paathutu",
   "description": "Turn large AI-generated code changes into an interactive visual story so developers can understand what changed, why it matters, and what deserves attention.",
   "version": "0.1.0",
   "publisher": "chernyx-ai-labs",
@@ -13,12 +13,12 @@
   "activationEvents": ["onCommand:aiChangeStory.analyze", "onView:aiChangeStory.sidebar"],
   "contributes": {
     "commands": [
-      { "command": "aiChangeStory.analyze", "title": "AI Change Story: Analyze Changes" },
-      { "command": "aiChangeStory.openStory", "title": "AI Change Story: Open Story" },
-      { "command": "aiChangeStory.refresh", "title": "AI Change Story: Refresh Analysis" },
-      { "command": "aiChangeStory.showMap", "title": "AI Change Story: Show Change Map" },
-      { "command": "aiChangeStory.showRisk", "title": "AI Change Story: Show Risk Report" },
-      { "command": "aiChangeStory.reset", "title": "AI Change Story: Reset" }
+      { "command": "aiChangeStory.analyze", "title": "Paathutu: Open Overview" },
+      { "command": "aiChangeStory.openStory", "title": "Paathutu: Start Change Story" },
+      { "command": "aiChangeStory.refresh", "title": "Paathutu: Refresh Analysis" },
+      { "command": "aiChangeStory.showMap", "title": "Paathutu: Open Change Map" },
+      { "command": "aiChangeStory.showRisk", "title": "Paathutu: Open Risk Radar" },
+      { "command": "aiChangeStory.reset", "title": "Paathutu: Reset" }
     ],
     "viewsContainers": { "activitybar": [{ "id": "aiChangeStory", "title": "AI Change Story", "icon": "media/icon.svg" }] },
     "views": { "aiChangeStory": [{ "id": "aiChangeStory.sidebar", "name": "Change Story" }] },
