@@ -1,4 +1,4 @@
-# Paathutu
+# Pathuko
 
 Turn large AI-generated code changes into an interactive visual story so developers can understand what changed, why it matters, and what deserves attention.
 
