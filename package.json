@@ -1,6 +1,6 @@
 {
   "name": "ai-change-story",
-  "displayName": "Paathutu",
+  "displayName": "Pathuko",
   "description": "Turn large AI-generated code changes into an interactive visual story so developers can understand what changed, why it matters, and what deserves attention.",
   "version": "0.1.0",
   "publisher": "early-josh",
@@ -11,15 +11,14 @@
   "categories": ["Other", "Visualization"],
   "keywords": ["ai", "git", "code review", "changes", "risk", "story"],
   "main": "./out/extension.js",
-  "activationEvents": ["onCommand:aiChangeStory.analyze", "onView:aiChangeStory.sidebar"],
   "contributes": {
     "commands": [
-      { "command": "aiChangeStory.analyze", "title": "Paathutu: Open Overview" },
-      { "command": "aiChangeStory.openStory", "title": "Paathutu: Start Change Story" },
-      { "command": "aiChangeStory.refresh", "title": "Paathutu: Refresh Analysis" },
-      { "command": "aiChangeStory.showMap", "title": "Paathutu: Open Change Map" },
-      { "command": "aiChangeStory.showRisk", "title": "Paathutu: Open Risk Radar" },
-      { "command": "aiChangeStory.reset", "title": "Paathutu: Reset" }
+      { "command": "aiChangeStory.analyze", "title": "Pathuko: Open Overview" },
+      { "command": "aiChangeStory.openStory", "title": "Pathuko: Start Change Story" },
+      { "command": "aiChangeStory.refresh", "title": "Pathuko: Refresh Analysis" },
+      { "command": "aiChangeStory.showMap", "title": "Pathuko: Open Change Map" },
+      { "command": "aiChangeStory.showRisk", "title": "Pathuko: Open Risk Radar" },
+      { "command": "aiChangeStory.reset", "title": "Pathuko: Reset" }
     ],
     "viewsContainers": { "activitybar": [{ "id": "aiChangeStory", "title": "AI Change Story", "icon": "media/icon.svg" }] },
     "views": { "aiChangeStory": [{ "id": "aiChangeStory.sidebar", "name": "Change Story" }] },

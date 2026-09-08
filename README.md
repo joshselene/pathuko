@@ -24,7 +24,7 @@ npm run package
 code --install-extension ai-change-story-0.1.0.vsix
 ```
 
-Launch with `F5` to open an Extension Development Host, then run **Paathutu: Open Overview** from the Command Palette. The extension needs an open Git workspace with changes relative to `HEAD`.
+Launch with `F5` to open an Extension Development Host, then run **Pathuko: Open Overview** from the Command Palette. The extension needs an open Git workspace with changes relative to `HEAD`.
 
 ## Architecture
 
