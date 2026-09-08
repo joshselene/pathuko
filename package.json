@@ -20,7 +20,7 @@
       { "command": "aiChangeStory.showRisk", "title": "Pathuko: Open Risk Radar" },
       { "command": "aiChangeStory.reset", "title": "Pathuko: Reset" }
     ],
-    "viewsContainers": { "activitybar": [{ "id": "aiChangeStory", "title": "AI Change Story", "icon": "media/icon.svg" }] },
+    "viewsContainers": { "activitybar": [{ "id": "aiChangeStory", "title": "Pathuko", "icon": "media/icon.svg" }] },
     "views": { "aiChangeStory": [{ "id": "aiChangeStory.sidebar", "name": "Change Story" }] },
     "configuration": { "title": "AI Change Story", "properties": {
       "aiChangeStory.autoDetect": { "type": "boolean", "default": true, "description": "Detect large workspace changes without analyzing automatically." },
