@@ -7,4 +7,5 @@ node_modules/**
 .gitignore
 skills-lock.json
 *.vsix
-*.map
+**/*.map
+out/test/**

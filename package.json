@@ -3,12 +3,13 @@
   "displayName": "Paathutu",
   "description": "Turn large AI-generated code changes into an interactive visual story so developers can understand what changed, why it matters, and what deserves attention.",
   "version": "0.1.0",
-  "publisher": "chernyx-ai-labs",
+  "publisher": "earnest-paul",
+  "author": { "name": "Earnest Paul" },
+  "icon": "media/icon.png",
   "license": "MIT",
   "engines": { "vscode": "^1.85.0" },
   "categories": ["Other", "Visualization"],
   "keywords": ["ai", "git", "code review", "changes", "risk", "story"],
-  "repository": { "type": "git", "url": "https://github.com/Chernyx-AI-Labs/ai-change-story" },
   "main": "./out/extension.js",
   "activationEvents": ["onCommand:aiChangeStory.analyze", "onView:aiChangeStory.sidebar"],
   "contributes": {
@@ -33,6 +34,6 @@
       "aiChangeStory.excludePatterns": { "type": "array", "items": { "type": "string" }, "default": ["node_modules/**", "dist/**", "build/**", "*.lock"] }
     } }
   },
-  "scripts": { "compile": "tsc -p ./", "watch": "tsc -watch -p ./", "vscode:prepublish": "npm run compile", "test": "npm run compile && node --test out/test/**/*.test.js", "package": "npm run compile && vsce package" },
+  "scripts": { "compile": "tsc -p ./", "watch": "tsc -watch -p ./", "vscode:prepublish": "npm run compile", "test": "npm run compile && node --test out/test/**/*.test.js", "package": "npm run compile && vsce package --allow-missing-repository" },
   "devDependencies": { "@types/node": "^20.10.0", "@types/vscode": "^1.85.0", "@vscode/vsce": "^3.2.1", "typescript": "^5.3.0" }
 }
