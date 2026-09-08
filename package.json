@@ -3,7 +3,7 @@
   "displayName": "Paathutu",
   "description": "Turn large AI-generated code changes into an interactive visual story so developers can understand what changed, why it matters, and what deserves attention.",
   "version": "0.1.0",
-  "publisher": "earnest-paul",
+  "publisher": "early-josh",
   "author": { "name": "Earnest Paul" },
   "icon": "media/icon.png",
   "license": "MIT",
