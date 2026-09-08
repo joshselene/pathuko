@@ -2,7 +2,7 @@
   "name": "ai-change-story",
   "displayName": "Pathuko",
   "description": "Turn large AI-generated code changes into an interactive visual story so developers can understand what changed, why it matters, and what deserves attention.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publisher": "early-josh",
   "author": { "name": "Earnest Paul" },
   "icon": "media/icon.png",
