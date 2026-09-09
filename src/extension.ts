@@ -9,7 +9,27 @@ export function activate(context: vscode.ExtensionContext): void {
     getChildren: () => [new vscode.TreeItem('Analyze workspace changes', vscode.TreeItemCollapsibleState.None)],
     getTreeItem: (item: vscode.TreeItem) => { item.command = { command: 'aiChangeStory.analyze', title: 'Analyze workspace changes' }; return item; }
   }));
-  const analyze = vscode.commands.registerCommand('aiChangeStory.analyze', async () => { await vscode.window.withProgress({ location: vscode.ProgressLocation.Notification, title: 'AI Change Story: analyzing locally' }, async progress => { progress.report({ message: 'Reading Git changes...' }); try { lastAnalysis = await analyzeChanges(); if (!lastAnalysis.files.length) vscode.window.showInformationMessage('AI Change Story found no changes between HEAD and the working tree.'); view.show(lastAnalysis); } catch (error) { vscode.window.showErrorMessage(error instanceof Error ? error.message : 'Unable to analyze changes.'); } }); });
+  const analyze = vscode.commands.registerCommand('aiChangeStory.analyze', async () => { await vscode.window.withProgress({ location: vscode.ProgressLocation.Notification, title: 'AI Change Story: analyzing locally' }, async progress => { progress.report({ message: 'Reading Git changes...' }); try {
+      const folder = vscode.workspace.workspaceFolders?.[0];
+      if (!folder) {
+        vscode.window.showErrorMessage('Pathuko needs an open workspace folder. Open your project folder first.');
+        return;
+      }
+
+      const repoRoot = await new Promise<string | null>((resolve) => {
+        const cp = require('node:child_process');
+        cp.execFile('git', ['rev-parse', '--show-toplevel'], { cwd: folder.uri.fsPath }, (error: Error | null, stdout: string) => resolve(error ? null : stdout.trim()));
+      });
+
+      if (!repoRoot) {
+        vscode.window.showErrorMessage('Pathuko needs an open Git repository. Open the project folder that contains your Git repo, or initialize Git first.');
+        return;
+      }
+
+      lastAnalysis = await analyzeChanges();
+      if (!lastAnalysis.files.length) vscode.window.showInformationMessage('AI Change Story found no changes between HEAD and the working tree.');
+      view.show(lastAnalysis);
+    } catch (error) { vscode.window.showErrorMessage(error instanceof Error ? error.message : 'Unable to analyze changes.'); } }); });
   const openStory = vscode.commands.registerCommand('aiChangeStory.openStory', () => { if (lastAnalysis) { view.show(lastAnalysis); view.focus('stories'); } else return vscode.commands.executeCommand('aiChangeStory.analyze'); });
   const refresh = vscode.commands.registerCommand('aiChangeStory.refresh', () => vscode.commands.executeCommand('aiChangeStory.analyze'));
   const showMap = vscode.commands.registerCommand('aiChangeStory.showMap', () => { if (lastAnalysis) { view.show(lastAnalysis); view.focus('map'); } else return vscode.commands.executeCommand('aiChangeStory.analyze'); });
