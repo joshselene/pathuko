@@ -1,3 +1,4 @@
+import * as cp from 'node:child_process';
 import * as vscode from 'vscode';
 import { analyzeChanges } from './analyzers/changeAnalyzer';
 import { ChangeStoryView } from './providers/changeStoryView';
@@ -17,7 +18,6 @@ export function activate(context: vscode.ExtensionContext): void {
       }
 
       const repoRoot = await new Promise<string | null>((resolve) => {
-        const cp = require('node:child_process');
         cp.execFile('git', ['rev-parse', '--show-toplevel'], { cwd: folder.uri.fsPath }, (error: Error | null, stdout: string) => resolve(error ? null : stdout.trim()));
       });
 

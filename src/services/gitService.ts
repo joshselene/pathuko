@@ -1,4 +1,4 @@
-import * as cp from 'node:child_process';
+import { execFile } from 'node:child_process';
 import * as vscode from 'vscode';
 
 function normalizeGitError(error: unknown): Error {
@@ -10,7 +10,12 @@ function normalizeGitError(error: unknown): Error {
 }
 
 function runGit(cwd: string, args: string[]): Promise<string> {
-  return new Promise((resolve, reject) => cp.execFile('git', args, { cwd, maxBuffer: 20 * 1024 * 1024 }, (error, stdout, stderr) => error ? reject(new Error(stderr.trim() || 'Git is unavailable or this folder is not a repository.')) : resolve(stdout)));
+  return new Promise((resolve, reject) => {
+    execFile('git', args, { cwd, maxBuffer: 20 * 1024 * 1024 }, (error: Error | null, stdout: string, stderr: string) => {
+      if (error) reject(new Error(stderr.trim() || 'Git is unavailable or this folder is not a repository.'));
+      else resolve(stdout);
+    });
+  });
 }
 export interface RawDiff { path: string; status: string; additions: number; deletions: number; diff: string; }
 export async function collectDiff(): Promise<RawDiff[]> {
